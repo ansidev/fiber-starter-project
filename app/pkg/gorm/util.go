@@ -1,7 +1,7 @@
 package gorm
 
 import (
-	"github.com/ansidev/gin-starter-project/pkg/log"
+	"github.com/ansidev/fiber-starter-project/pkg/log"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 	gormLogger "gorm.io/gorm/logger"

@@ -1,4 +1,4 @@
-# [WIP] gin-starter-project
+# [WIP] fiber-starter-project
 
 # Description
 
@@ -10,7 +10,7 @@ Articles:
 
 # Features
 
-- [x] Gin.
+- [x] Fiber.
 - [x] Gorm.
 - [x] GitLab CI/CD.
 - [x] Conventional commit.
@@ -49,9 +49,9 @@ Articles:
 
 - For large-scale projects, you can split service interface into 2 parts: domain service & app service.
 - This starter project is using:
-  - Gin (controller layer)
+  - Fiber (controller layer)
   - Gorm (repository layer)
-  
+
   If you want to use another framework/library, feel free to fork this project and customize them.
 - Because this is a starter project, so the logic of repository, service and controller only cover simple cases.
 
@@ -132,5 +132,5 @@ export DOCKER_NETRC="machine gitlab.com login gitlab_user password glpat-6ADHo3y
 2. Build Docker image
 
 ```
-docker build . --build-arg DOCKER_NETRC -t registry.gitlab.com/ansidev/gin-starter-project -f Dockerfile.app .
+docker build . --build-arg DOCKER_NETRC -t registry.gitlab.com/ansidev/fiber-starter-project -f Dockerfile.app .
 ```

@@ -1,30 +1,32 @@
 package http
 
 import (
-	"github.com/ansidev/gin-starter-project/author/service"
-	"github.com/ansidev/gin-starter-project/pkg/log"
-	"github.com/gin-gonic/gin"
-	"go.uber.org/zap"
+	"net/http"
 	"strconv"
+
+	"github.com/ansidev/fiber-starter-project/author/service"
+	"github.com/ansidev/fiber-starter-project/pkg/log"
+	"github.com/gofiber/fiber/v2"
+	"go.uber.org/zap"
 )
 
-func registerRoutes(router *gin.Engine, authorController *AuthorController) {
-	v1 := router.Group("/author/v1")
+func registerRoutes(app *fiber.App, authorController *AuthorController) {
+	v1 := app.Group("/author/v1")
 
-	v1.GET("/authors/:id", authorController.GetAuthor)
+	v1.Get("/authors/:id", authorController.GetAuthor)
 }
 
-func NewAuthorController(router *gin.Engine, authorService service.IAuthorService) {
+func NewAuthorController(app *fiber.App, authorService service.IAuthorService) {
 	controller := &AuthorController{authorService}
-	registerRoutes(router, controller)
+	registerRoutes(app, controller)
 }
 
 type AuthorController struct {
 	authorService service.IAuthorService
 }
 
-func (ctrl *AuthorController) GetAuthor(ctx *gin.Context) {
-	authorIdParam := ctx.Param("id")
+func (ctrl *AuthorController) GetAuthor(ctx *fiber.Ctx) error {
+	authorIdParam := ctx.Params("id")
 
 	authorId, err := strconv.ParseInt(authorIdParam, 10, 64)
 
@@ -35,11 +37,12 @@ func (ctrl *AuthorController) GetAuthor(ctx *gin.Context) {
 	author, err := ctrl.authorService.GetByID(authorId)
 
 	if err != nil {
-		ctx.JSON(500, gin.H{
-			"error": err.Error(),
-		})
-		return
+		return ctx.
+			Status(http.StatusInternalServerError).
+			JSON(map[string]string{
+				"error": err.Error(),
+			})
 	}
 
-	ctx.JSON(200, author)
+	return ctx.Status(http.StatusOK).JSON(author)
 }

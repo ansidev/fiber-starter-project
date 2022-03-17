@@ -3,16 +3,17 @@ package test
 import (
 	"database/sql"
 	"fmt"
-	"github.com/ansidev/gin-starter-project/pkg/db"
-	gormPkg "github.com/ansidev/gin-starter-project/pkg/gorm"
-	"github.com/ansidev/gin-starter-project/pkg/log"
+	"time"
+
+	"github.com/ansidev/fiber-starter-project/pkg/db"
+	gormPkg "github.com/ansidev/fiber-starter-project/pkg/gorm"
+	"github.com/ansidev/fiber-starter-project/pkg/log"
 	ep "github.com/fergusstrange/embedded-postgres"
 	"github.com/pressly/goose/v3"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"time"
 )
 
 const (

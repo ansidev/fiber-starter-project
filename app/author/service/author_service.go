@@ -1,6 +1,6 @@
 package service
 
-import "github.com/ansidev/gin-starter-project/domain/author"
+import "github.com/ansidev/fiber-starter-project/domain/author"
 
 type IAuthorService interface {
 	GetByID(id int64) (author.Author, error)

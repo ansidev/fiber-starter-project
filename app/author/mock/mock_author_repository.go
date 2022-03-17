@@ -7,7 +7,7 @@ package mock
 import (
 	reflect "reflect"
 
-	author "github.com/ansidev/gin-starter-project/domain/author"
+	author "github.com/ansidev/fiber-starter-project/domain/author"
 	gomock "github.com/golang/mock/gomock"
 )
 

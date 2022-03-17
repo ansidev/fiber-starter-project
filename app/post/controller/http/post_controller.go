@@ -1,30 +1,32 @@
 package http
 
 import (
-	"github.com/ansidev/gin-starter-project/pkg/log"
-	"github.com/ansidev/gin-starter-project/post/service"
-	"github.com/gin-gonic/gin"
-	"go.uber.org/zap"
+	"github.com/gofiber/fiber/v2"
+	"net/http"
 	"strconv"
+
+	"github.com/ansidev/fiber-starter-project/pkg/log"
+	"github.com/ansidev/fiber-starter-project/post/service"
+	"go.uber.org/zap"
 )
 
-func registerRoutes(router *gin.Engine, postController *PostController) {
-	v1 := router.Group("/post/v1")
+func registerRoutes(app *fiber.App, postController *PostController) {
+	v1 := app.Group("/post/v1")
 
-	v1.GET("/posts/:id", postController.GetPost)
+	v1.Get("/posts/:id", postController.GetPost)
 }
 
-func NewPostController(router *gin.Engine, postService service.IPostService) {
+func NewPostController(app *fiber.App, postService service.IPostService) {
 	controller := &PostController{postService}
-	registerRoutes(router, controller)
+	registerRoutes(app, controller)
 }
 
 type PostController struct {
 	postService service.IPostService
 }
 
-func (ctrl *PostController) GetPost(ctx *gin.Context) {
-	postIdParam := ctx.Param("id")
+func (ctrl *PostController) GetPost(ctx *fiber.Ctx) error {
+	postIdParam := ctx.Params("id")
 
 	postId, err := strconv.ParseInt(postIdParam, 10, 64)
 
@@ -35,11 +37,12 @@ func (ctrl *PostController) GetPost(ctx *gin.Context) {
 	post, err := ctrl.postService.GetByID(postId)
 
 	if err != nil {
-		ctx.JSON(500, gin.H{
-			"error": err.Error(),
-		})
-		return
+		return ctx.
+			Status(http.StatusInternalServerError).
+			JSON(map[string]string{
+				"error": err.Error(),
+			})
 	}
 
-	ctx.JSON(200, post)
+	return ctx.Status(http.StatusOK).JSON(post)
 }

@@ -1,6 +1,6 @@
 package config
 
-import "github.com/ansidev/gin-starter-project/pkg/db"
+import "github.com/ansidev/fiber-starter-project/pkg/db"
 
 var (
 	AppConfig Config

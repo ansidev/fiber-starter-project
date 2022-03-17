@@ -1,12 +1,13 @@
 package repository
 
 import (
-	"github.com/ansidev/gin-starter-project/constant"
-	"github.com/ansidev/gin-starter-project/domain/post"
-	"github.com/ansidev/gin-starter-project/test"
+	"testing"
+
+	"github.com/ansidev/fiber-starter-project/constant"
+	"github.com/ansidev/fiber-starter-project/domain/post"
+	"github.com/ansidev/fiber-starter-project/test"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
-	"testing"
 )
 
 func TestPostgresPostRepository(t *testing.T) {

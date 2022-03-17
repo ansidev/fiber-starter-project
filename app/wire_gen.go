@@ -8,11 +8,11 @@ package main
 
 import (
 	"database/sql"
-	"github.com/ansidev/gin-starter-project/author/repository"
-	"github.com/ansidev/gin-starter-project/author/service"
-	"github.com/ansidev/gin-starter-project/pkg/db"
-	repository2 "github.com/ansidev/gin-starter-project/post/repository"
-	service2 "github.com/ansidev/gin-starter-project/post/service"
+	"github.com/ansidev/fiber-starter-project/author/repository"
+	"github.com/ansidev/fiber-starter-project/author/service"
+	"github.com/ansidev/fiber-starter-project/pkg/db"
+	repository2 "github.com/ansidev/fiber-starter-project/post/repository"
+	service2 "github.com/ansidev/fiber-starter-project/post/service"
 	"gorm.io/gorm"
 )
 

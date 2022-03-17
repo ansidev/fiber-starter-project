@@ -3,7 +3,7 @@ package post
 import (
 	"time"
 
-	"github.com/ansidev/gin-starter-project/domain/author"
+	"github.com/ansidev/fiber-starter-project/domain/author"
 )
 
 type Post struct {

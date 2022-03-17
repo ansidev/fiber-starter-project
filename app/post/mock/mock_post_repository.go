@@ -7,7 +7,7 @@ package mock
 import (
 	reflect "reflect"
 
-	post "github.com/ansidev/gin-starter-project/domain/post"
+	post "github.com/ansidev/fiber-starter-project/domain/post"
 	gomock "github.com/golang/mock/gomock"
 )
 

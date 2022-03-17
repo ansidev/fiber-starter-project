@@ -1,6 +1,6 @@
 package service
 
-import "github.com/ansidev/gin-starter-project/domain/post"
+import "github.com/ansidev/fiber-starter-project/domain/post"
 
 type IPostService interface {
 	GetByID(id int64) (post.Post, error)

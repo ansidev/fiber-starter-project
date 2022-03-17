@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/ansidev/gin-starter-project/pkg/log"
+	"github.com/ansidev/fiber-starter-project/pkg/log"
 	"github.com/spf13/viper"
 )
 

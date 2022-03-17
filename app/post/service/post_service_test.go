@@ -2,14 +2,15 @@ package service
 
 import (
 	"errors"
-	"github.com/ansidev/gin-starter-project/domain/author"
-	"github.com/ansidev/gin-starter-project/domain/post"
-	"github.com/ansidev/gin-starter-project/post/mock"
-	"github.com/ansidev/gin-starter-project/test"
-	"github.com/stretchr/testify/require"
-	"github.com/stretchr/testify/suite"
 	"testing"
 	"time"
+
+	"github.com/ansidev/fiber-starter-project/domain/author"
+	"github.com/ansidev/fiber-starter-project/domain/post"
+	"github.com/ansidev/fiber-starter-project/post/mock"
+	"github.com/ansidev/fiber-starter-project/test"
+	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/suite"
 )
 
 func TestPostService(t *testing.T) {

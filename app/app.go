@@ -1,23 +1,21 @@
 package main
 
 import (
-	"context"
 	"database/sql"
 	"fmt"
-	authorController "github.com/ansidev/gin-starter-project/author/controller/http"
-	"github.com/ansidev/gin-starter-project/config"
-	"github.com/ansidev/gin-starter-project/constant"
-	gormPkg "github.com/ansidev/gin-starter-project/pkg/gorm"
-	"github.com/ansidev/gin-starter-project/pkg/log"
-	postController "github.com/ansidev/gin-starter-project/post/controller/http"
-	"github.com/gin-gonic/gin"
+	authorController "github.com/ansidev/fiber-starter-project/author/controller/http"
+	"github.com/ansidev/fiber-starter-project/config"
+	"github.com/ansidev/fiber-starter-project/constant"
+	gormPkg "github.com/ansidev/fiber-starter-project/pkg/gorm"
+	"github.com/ansidev/fiber-starter-project/pkg/log"
+	postController "github.com/ansidev/fiber-starter-project/post/controller/http"
+	"github.com/gofiber/fiber/v2"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
-	"time"
 )
 
 var (
@@ -45,14 +43,11 @@ func main() {
 	// Flush log buffer if necessary
 	defer log.Sync()
 
-	router := gin.Default()
-	if appEnv == constant.DefaultProdEnv {
-		gin.SetMode(gin.ReleaseMode)
-	}
+	app := fiber.New()
 
 	// Default route
-	router.GET("/", func(ctx *gin.Context) {
-		ctx.JSON(200, gin.H{
+	app.Get("/", func(ctx *fiber.Ctx) error {
+		return ctx.Status(http.StatusOK).JSON(map[string]string{
 			"name":        constant.AppName,
 			"version":     constant.AppVersion,
 			"releaseDate": constant.AppReleaseDate,
@@ -60,16 +55,11 @@ func main() {
 	})
 
 	initInfrastructureServices()
-	initControllers(router)
-
-	server := &http.Server{
-		Addr:    initAddress(),
-		Handler: router,
-	}
+	initControllers(app)
 
 	// Listen from a different goroutine
 	go func() {
-		if err := server.ListenAndServe(); err != nil {
+		if err := app.Listen(initAddress()); err != nil {
 			log.Fatal(err)
 		}
 	}()
@@ -82,13 +72,11 @@ func main() {
 	// Block the main thread until an interrupt is received
 	<-exit
 	log.Info("Gracefully shutting down...")
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-	_ = server.Shutdown(ctx)
+	_ = app.Shutdown()
 
-	if err := server.Shutdown(ctx); err != nil {
-		log.Fatal("Server Shutdown:", err)
-	}
+	_ = sqlDb.Close()
+	log.Info("Closed database channel")
+
 	log.Info("Server exiting")
 }
 
@@ -101,12 +89,12 @@ func initInfrastructureServices() {
 	gormDb = gormPkg.InitGormDb(dialector)
 }
 
-func initControllers(router *gin.Engine) {
+func initControllers(app *fiber.App) {
 	authorService := InitAuthorService(gormDb)
-	authorController.NewAuthorController(router, authorService)
+	authorController.NewAuthorController(app, authorService)
 
 	postService := InitPostService(gormDb)
-	postController.NewPostController(router, postService)
+	postController.NewPostController(app, postService)
 }
 
 func initAddress() string {

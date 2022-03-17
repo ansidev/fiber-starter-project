@@ -5,9 +5,9 @@ const (
 	DefaultProdConfig = "app.env.example"
 	DefaultDevConfig  = "app.env"
 
-	AppName        = "Gin Starter Project"
+	AppName        = "Fiber Starter Project"
 	AppVersion     = "1.0.0"
-	AppReleaseDate = "2022.02.14"
+	AppReleaseDate = "2022.03.18"
 
 	DateTimeFormat = "2006-01-02 15:04:05"
 )

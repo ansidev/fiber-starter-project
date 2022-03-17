@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"github.com/ansidev/gin-starter-project/domain/author"
-	"github.com/ansidev/gin-starter-project/pkg/log"
+	"github.com/ansidev/fiber-starter-project/domain/author"
+	"github.com/ansidev/fiber-starter-project/pkg/log"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 )

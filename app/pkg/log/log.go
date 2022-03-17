@@ -1,13 +1,14 @@
 package log
 
 import (
-	"github.com/ansidev/gin-starter-project/constant"
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
 	"log"
 	"os"
 	"strings"
 	"time"
+
+	"github.com/ansidev/fiber-starter-project/constant"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
 var (

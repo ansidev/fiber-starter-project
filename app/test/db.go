@@ -1,11 +1,12 @@
 package test
 
 import (
-	"github.com/ansidev/gin-starter-project/pkg/db"
-	"github.com/ansidev/gin-starter-project/pkg/log"
+	"time"
+
+	"github.com/ansidev/fiber-starter-project/pkg/db"
+	"github.com/ansidev/fiber-starter-project/pkg/log"
 	ep "github.com/fergusstrange/embedded-postgres"
 	"go.uber.org/zap/zapio"
-	"time"
 )
 
 func GetTestDbConfig() (db.SqlDbConfig, *ep.EmbeddedPostgres) {

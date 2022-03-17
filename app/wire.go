@@ -6,11 +6,11 @@ package main
 
 import (
 	"database/sql"
-	authorRepository "github.com/ansidev/gin-starter-project/author/repository"
-	authorService "github.com/ansidev/gin-starter-project/author/service"
-	"github.com/ansidev/gin-starter-project/pkg/db"
-	postRepository "github.com/ansidev/gin-starter-project/post/repository"
-	postService "github.com/ansidev/gin-starter-project/post/service"
+	authorRepository "github.com/ansidev/fiber-starter-project/author/repository"
+	authorService "github.com/ansidev/fiber-starter-project/author/service"
+	"github.com/ansidev/fiber-starter-project/pkg/db"
+	postRepository "github.com/ansidev/fiber-starter-project/post/repository"
+	postService "github.com/ansidev/fiber-starter-project/post/service"
 	"github.com/google/wire"
 	"gorm.io/gorm"
 )

@@ -1,9 +1,10 @@
 package config
 
 import (
-	"github.com/ansidev/gin-starter-project/constant"
 	"os"
 	"testing"
+
+	"github.com/ansidev/fiber-starter-project/constant"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"

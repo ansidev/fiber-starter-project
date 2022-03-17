@@ -3,7 +3,8 @@ package db
 import (
 	"database/sql"
 	"fmt"
-	"github.com/ansidev/gin-starter-project/pkg/log"
+
+	"github.com/ansidev/fiber-starter-project/pkg/log"
 	_ "github.com/lib/pq"
 )
 
