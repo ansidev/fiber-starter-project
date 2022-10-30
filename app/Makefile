@@ -3,7 +3,7 @@ export $(shell test -f app.env && sed 's/=.*//' app.env)
 
 prepare:
 	@echo "Installing golangci-lint"
-	curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh| sh -s latest
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 	@echo "Installing goose"
 	go install github.com/pressly/goose/v3/cmd/goose@latest
 	@echo "Installing wire"
