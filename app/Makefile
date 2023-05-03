@@ -16,16 +16,16 @@ prepare:
 	cd ../ && go install github.com/go-courier/husky/cmd/husky@latest && husky init
 
 dockerconf:
-	docker-compose --env-file ./app.env config
+	docker compose --env-file ./app.env config
 
 start:
-	docker-compose --env-file ./app.env up -d
+	docker compose --env-file ./app.env up -d
 
 stop:
-	docker-compose stop
+	docker compose stop
 
 destroy:
-	docker-compose down -v
+	docker compose down -v
 
 clean:
 	[ -d dist ] && rm dist/*
@@ -60,7 +60,7 @@ migfix:
 	goose -dir migration $(DB_DRIVER) "$(DB_DRIVER)://$(DB_USERNAME):$(DB_PASSWORD)@$(DB_HOST):$(DB_PORT)/$(DB_NAME)?sslmode=disable" fix
 
 execdb:
-	docker-compose exec db psql -U postgres $(DB_NAME)
+	docker compose exec db psql -U postgres $(DB_NAME)
 
 sqlc:
 	sqlc generate
